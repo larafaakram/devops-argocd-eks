@@ -1,0 +1,79 @@
+services:
+  nexus:
+
+    command:
+      - "/opt/sonatype/nexus/bin/nexus"
+      - "run"
+
+    container_name: "nexus"
+
+    environment:
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "container=oci"
+      - "SONATYPE_DIR=/opt/sonatype"
+      - "NEXUS_HOME=/opt/sonatype/nexus"
+      - "NEXUS_DATA=/nexus-data"
+      - "NEXUS_CONTEXT="
+      - "SONATYPE_WORK=/opt/sonatype/sonatype-work"
+      - "DOCKER_TYPE=rh-docker"
+      - "INSTALL4J_ADD_VM_PARAMS=-Xms2703m -Xmx2703m -XX:MaxDirectMemorySize=2703m -Djava.util.prefs.userRoot=/nexus-data/javaprefs"
+
+    hostname: "34849acc0786"
+
+    image: "sonatype/nexus3:latest"
+
+    ipc: "private"
+
+    labels:
+      architecture: "x86_64"
+      base-image-ref: "redhat/ubi9-minimal@sha256:bafd57451de2daa71ed301b277d49bd120b474ed438367f087eac0b885a668dc"
+      build-date: "2025-03-13T07:15:09Z"
+      com.redhat.component: "ubi9-minimal-container"
+      com.redhat.license_terms: "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI"
+      com.sonatype.license: "Apache License, Version 2.0"
+      com.sonatype.name: "Nexus Repository Manager base image"
+      description: "The Nexus Repository Manager server           with universal support for popular component\    
+        \ formats."
+      distribution-scope: "public"
+      io.buildah.version: "1.39.0-dev"
+      io.k8s.description: "The Nexus Repository Manager server           with universal support for popular\       
+        \ component formats."
+      io.k8s.display-name: "Nexus Repository Manager"
+      io.openshift.expose-services: "8081:8081"
+      io.openshift.tags: "Sonatype,Nexus,Repository Manager"
+      maintainer: "Sonatype <support@sonatype.com>"
+      name: "Nexus Repository Manager"
+      release: "3.78.2"
+      run: "docker run -d --name NAME           -p 8081:8081           IMAGE"
+      stop: "docker stop NAME"
+      summary: "The Nexus Repository Manager server           with universal support for popular component\        
+        \ formats."
+      url: "https://sonatype.com"
+      vcs-ref: "7865437f00d10c54ee1c3a6268b5ff65b38afba5"
+      vcs-type: "git"
+      vendor: "Sonatype"
+      version: "3.78.2-04"
+
+    logging:
+      driver: "json-file"
+      options: {}
+
+    mac_address: "02:42:ac:11:00:03"
+
+    network_mode: "bridge"
+
+    ports:
+      - "8081:8081/tcp"
+
+    user: "nexus"
+
+    volumes:
+      - "9054e1a2585ec88d1586309a03ab814eb0acb6b85513b2179cf2532f23866477:/nexus-data"
+
+    working_dir: "/opt/sonatype"
+
+version: "3.6"
+
+volumes:
+  9054e1a2585ec88d1586309a03ab814eb0acb6b85513b2179cf2532f23866477:
+    external: true
